@@ -4,7 +4,7 @@ function add_dual_equality_constraints(dual_model::MOI.ModelLike, primal_model::
                                        con_types::Vector{Tuple{DataType, DataType}},
                                        variable_parameters::Vector{VI}) where T
 
-    sense_change = MOI.get(dual_model, MOI.ObjectiveSense()) == MOI.MAX_SENSE ? one(T) : -one(T)
+    sense_change = MOI.get(dual_model, MOI.ObjectiveSense()) == MOI.MIN_SENSE ? one(T) : -one(T)
 
     all_variables = MOI.get(primal_model, MOI.ListOfVariableIndices())
     restricted_variables = setdiff(all_variables, variable_parameters)
